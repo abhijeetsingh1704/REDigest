@@ -5,7 +5,7 @@ REDigest: a Python GUI for *In-Silico* Restriction Digestion Analysis for Gene o
 ## Dependencies
 REDigest is written in **Python3**, not adapted for python2 and its dependencies.
 
-To use REDigest, following dependencies must be installed, (version ≥) 
+To use REDigest, following dependencies must be installed, (for python3, version ≥) 
 
 1. tkinter (8.6)
 2. Biopython (1.77)
