@@ -98,13 +98,23 @@ def resetAll():
 # bar
 menuBar = Menu(win)
 win.config(menu=menuBar)
+
 # menu
-menu1 = Menu(menuBar)
-menuBar.add_command(label="Exit", command=_quit)
-menuBar.add_command(label="Help_Tab1", command=_help1)
-menuBar.add_command(label="Help_Tab2", command=_help2)
-menuBar.add_command(label="About", command=_aboutBox)
-menuBar.add_command(label="Citation", command=_cite)
+# if on MacOS, put menu items in a dropdown as empty menu items are not allowed
+menuDropdown = Menu(menuBar)
+if platform.system() == 'Darwin':
+    targetmenu = menuDropdown
+else:
+    targetmenu = menuBar
+
+targetmenu.add_command(label="Exit", command=_quit)
+targetmenu.add_command(label="Help_Tab1", command=_help1)
+targetmenu.add_command(label="Help_Tab2", command=_help2)
+targetmenu.add_command(label="About", command=_aboutBox)
+targetmenu.add_command(label="Citation", command=_cite)
+
+if platform.system() == 'Darwin':
+    menuBar.add_cascade(label="REDigest", menu=menuDropdown)
 
 ################################################## Tabs
 # tab control
@@ -136,11 +146,11 @@ entry1_input.focus()
 
 # browse input_file
 def Browse_file():
-    filename =fd.askopenfilename(filetypes=[("fasta files","*.fa*"),("All files","*.*")] if platform.system() != 'Darwin' else (),
+    filename = fd.askopenfilename(filetypes=[("fasta files","*.fa*"),("All files","*.*")] if platform.system() != 'Darwin' else (),
     initialdir = ".",
     title = "Select file")
     entry1_input.insert(tk.END, filename)
-    if filename :
+    if filename:
         Browse_btn1.configure(text="Ok")
         label1.configure(foreground="green")
         label1.configure(text="Input filename:\t")
