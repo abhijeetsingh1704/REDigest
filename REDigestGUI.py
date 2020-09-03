@@ -15,6 +15,7 @@ __email__		= "abhijeet.singh@slu.se, abhijeetsingh.aau@gmail.com"
 import sys
 import datetime
 import os
+import platform
 import tkinter as tk
 import pandas as pd
 import matplotlib as mpl
@@ -135,7 +136,7 @@ entry1_input.focus()
 
 # browse input_file
 def Browse_file():
-    filename =fd.askopenfilename(filetypes=(("fasta files","*.fa*"),("All files","*.*")),
+    filename =fd.askopenfilename(filetypes=[("fasta files","*.fa*"),("All files","*.*")] if platform.system() != 'Darwin' else (),
     initialdir = ".",
     title = "Select file")
     entry1_input.insert(tk.END, filename)
@@ -146,7 +147,7 @@ def Browse_file():
         ifile=entry1_input.get()
         print("Input file:\t", ifile)
     else:
-        filename = fd.askopenfilename(filetypes=(("fasta files","*.fa*"),("All files","*.*")),
+        filename = fd.askopenfilename(filetypes=[("fasta files","*.fa*"),("All files","*.*")] if platform.system() != 'Darwin' else (),
         initialdir = ".",
         title = "Select file")
         entry1_input.insert(tk.END, filename)
@@ -458,7 +459,7 @@ entry1T2_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
 entry1T2_input.focus()
 # browse input_file
 def Browse_fileT2():
-    filenameT2 =fd.askopenfilename(filetypes=(("csv files","*.csv*"),("All files","*.*")),
+    filenameT2 = fd.askopenfilename(filetypes=[("csv files", "*.csv*"), ("All files", "*.*")] if platform.system() != 'Darwin' else (),
     initialdir = ".",
     title = "Select file")
     entry1T2_input.insert(tk.END, filenameT2)
@@ -469,7 +470,7 @@ def Browse_fileT2():
         ifileT2=entry1T2_input.get()
         print("Input file:\t", ifileT2)
     else:
-        filenameT2 = fd.askopenfilename(filetypes=(("fasta files","*.fa*"),("All files","*.*")),
+        filenameT2 = fd.askopenfilename(filetypes=[("fasta files", "*.fa*"), ("All files", "*.*")] if platform.system() != 'Darwin' else (),
         initialdir = ".",
         title = "Select file")
         entry1T2_input.insert(tk.END, filenameT2)
