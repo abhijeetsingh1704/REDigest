@@ -91,10 +91,6 @@ def _help1():
 def _help2():
     _helpBox2()
 
-# reset
-def resetAll():
-    canvas.destroy()
-
 ################################################## Menu
 # bar
 menuBar = Menu(win)
@@ -429,7 +425,7 @@ entry10_input = ttk.Entry(visu_frame, width=30, textvariable=entry10)
 entry10_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
 entry10_input.focus()
 # button
-def click_button_entry8():
+def click_button_entry10():
     entry10btn.configure(text="Ok")
     label10.configure(foreground="green")
     label10.configure(text="Title:\t\t")
@@ -438,7 +434,7 @@ def click_button_entry8():
 
 
 # click_button entry10
-entry10btn = ttk.Button(visu_frame, text="Click", command=click_button_entry8)
+entry10btn = ttk.Button(visu_frame, text="Click", command=click_button_entry10)
 entry10btn.grid(column=2, row=0, sticky=tk.W, padx = 0, pady=2)
 # mandatory entry 10
 # Mandatory10 = ttk.Label(visu_frame, text="\t\t  ").grid(column=5, row=0, sticky=tk.W, padx = 4, pady=4)
@@ -1167,9 +1163,7 @@ defaultT2text.configure(foreground="red")
 # run label
 runT2label = ttk.Label(tab2, text="Execute!")
 runT2label.grid(column=0, row=14, sticky=tk.W, padx = 4, pady=0)
-# info popup
-def doneBox():
-    msg.showinfo("REDigest Message!","Processing Complete!")
+
 # code
 def run_visu_codeT2():
         visu_codeT2()
