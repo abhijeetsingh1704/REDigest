@@ -186,8 +186,8 @@ entry1_input.focus()
 # browse input_file
 def Browse_file():
     filename = fd.askopenfilename(filetypes=[("fasta files","*.fa*"),("All files","*.*")] if platform.system() != 'Darwin' else (),
-    initialdir = ".",
-    title = "Select file")
+                                  initialdir = ".",
+                                  title = "Select file")
     entry1_input.insert(tk.END, filename)
     if filename:
         Browse_btn1.configure(text="Ok")
@@ -197,11 +197,13 @@ def Browse_file():
         print("Input file:\t", ifile)
     else:
         filename = fd.askopenfilename(filetypes=[("fasta files","*.fa*"),("All files","*.*")] if platform.system() != 'Darwin' else (),
-        initialdir = ".",
-        title = "Select file")
+                                      initialdir = ".",
+                                      title = "Select file")
         entry1_input.insert(tk.END, filename)
     if entry1_input.get() == "":
         msgBox()
+
+
 # click browse button for input
 Browse_btn1 = ttk.Button(file_frame, text="Browse", command=Browse_file)
 Browse_btn1.grid(column=2, row=0, sticky=tk.W, padx = 0, pady=2)
@@ -221,13 +223,15 @@ entry2_input = ttk.Entry(file_frame, width=30, textvariable=entry2)
 entry2_input.grid(column=1, row=2, sticky=tk.W, padx = 0, pady=2)
 entry2_input.focus()
 
+
 # button
 def click_button_entry2():
-        entry2btn.configure(text="Ok")
-        label2.configure(foreground="green")
-        label2.configure(text="Output filename:\t")
-        ioutput = entry2_input.get()
-        print("Output file:\t", ioutput)
+    entry2btn.configure(text="Ok")
+    label2.configure(foreground="green")
+    label2.configure(text="Output filename:\t")
+    ioutput = entry2_input.get()
+    print("Output file:\t", ioutput)
+
 
 # click_button entry2
 entry2btn = ttk.Button(file_frame, text="Click", command=click_button_entry2)
@@ -251,16 +255,18 @@ entry3_input = ttk.Entry(enzyme_frame, width=30, textvariable=entry3)
 entry3_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
 entry3_input.focus()
 ienzyme = entry3_input.get()
+
+
 # button
 def click_button_entry3():
-            if entry3_input.get() == "":
-                msgBox()
-            else:
-                entry3btn.configure(text="Ok")
-                label3.configure(foreground="green")
-                label3.configure(text="Enzyme:\t")
-                ienzyme = entry3_input.get()
-                print("Input Enzyme:\t", ienzyme)
+    if entry3_input.get() == "":
+        msgBox()
+    else:
+        entry3btn.configure(text="Ok")
+        label3.configure(foreground="green")
+        label3.configure(text="Enzyme:\t")
+        ienzyme = entry3_input.get()
+        print("Input Enzyme:\t", ienzyme)
 
 
 # click_button entry2
@@ -292,16 +298,18 @@ entry4_input['values'] = ("Forward" , "Reverse")
 entry4_input.grid(column=1, row=0, sticky=tk.E, padx = 0, pady=2)
 entry4_input.current(0)
 
+
 # button
 def click_button_entry4():
-            entry4btn.configure(text="Ok")
-            label4.configure(foreground="green")
-            label4.configure(text="Tagged primer\t")
-            if entry4_input.get() == "Forward":
-                itag = str("Forward")
-            elif entry4_input.get() == "Reverse":
-                itag = str("Reverse")
-            print("Tagged primer:\t", itag)
+    entry4btn.configure(text="Ok")
+    label4.configure(foreground="green")
+    label4.configure(text="Tagged primer\t")
+    if entry4_input.get() == "Forward":
+        itag = str("Forward")
+    elif entry4_input.get() == "Reverse":
+        itag = str("Reverse")
+    print("Tagged primer:\t", itag)
+
 
 # click_button entry4
 entry4btn = ttk.Button(primer_frame, text="Click",
@@ -321,13 +329,16 @@ entry5_input = ttk.Entry(primer_frame, width=30, textvariable=entry5)
 entry5_input.grid(column=1, row=1, sticky=tk.E, padx = 0, pady=2)
 entry5_input.focus()
 
+
 # button
 def click_button_entry5():
-            entry5btn.configure(text="Ok")
-            label5.configure(foreground="green")
-            label5.configure(text="Forward Seq\t")
-            i_fprimer = entry5_input.get()
-            print("Forward primer:\t5'-"+i_fprimer+"-3'")
+    entry5btn.configure(text="Ok")
+    label5.configure(foreground="green")
+    label5.configure(text="Forward Seq\t")
+    i_fprimer = entry5_input.get()
+    print("Forward primer:\t5'-"+i_fprimer+"-3'")
+
+
 #
 # # click_button entry5
 entry5btn = ttk.Button(primer_frame, text="Click",
@@ -344,13 +355,16 @@ entry6_input = ttk.Entry(primer_frame, width=30, textvariable=entry6)
 entry6_input.grid(column=1, row=2, sticky=tk.E, padx = 0, pady=2)
 entry6_input.focus()
 
+
 # button
 def click_button_entry6():
-            entry6btn.configure(text="Ok")
-            label6.configure(foreground="green")
-            label6.configure(text="Reverse Seq\t")
-            i_rprimer = entry6_input.get()
-            print("Reverse primer:\t5'-" + i_rprimer + "-3'")
+    entry6btn.configure(text="Ok")
+    label6.configure(foreground="green")
+    label6.configure(text="Reverse Seq\t")
+    i_rprimer = entry6_input.get()
+    print("Reverse primer:\t5'-" + i_rprimer + "-3'")
+
+
 #
 # # click_button entry6
 entry6btn = ttk.Button(primer_frame, text="Click",
@@ -379,13 +393,16 @@ entry7_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
 entry7_input.current(0)
 itype = entry7_input.get()
 
+
 # button
 def click_button_entry7():
-            entry7btn.configure(text="Ok")
-            label7.configure(foreground="green")
-            label7.configure(text="File type:\t\t")
-            itype = entry7_input.get()
-            print("Input type:\t" + itype)
+    entry7btn.configure(text="Ok")
+    label7.configure(foreground="green")
+    label7.configure(text="File type:\t\t")
+    itype = entry7_input.get()
+    print("Input type:\t" + itype)
+
+
 # click_button entry7
 entry7btn = ttk.Button(type_frame, text="Click",
 command=click_button_entry7)
@@ -406,13 +423,15 @@ entry8_input['values'] = ("Fasta" , "Genbank")
 entry8_input.grid(column=1, row=1, sticky=tk.W, padx = 0, pady=2)
 entry8_input.current(0)
 
+
 # button
 def click_button_entry8():
-        entry8btn.configure(text="Ok")
-        label8.configure(foreground="green")
-        label8.configure(text="Input format:\t")
-        iformat = entry8_input.get()
-        print("Input file format:\t", iformat)
+    entry8btn.configure(text="Ok")
+    label8.configure(foreground="green")
+    label8.configure(text="Input format:\t")
+    iformat = entry8_input.get()
+    print("Input file format:\t", iformat)
+
 
 # click_button entry8
 entry8btn = ttk.Button(file_frame, text="Click", command=click_button_entry8)
@@ -433,13 +452,15 @@ entry9_input['values'] = ("Fasta" , "Genbank")
 entry9_input.grid(column=1, row=3, sticky=tk.W, padx = 0, pady=2)
 entry9_input.current(0)
 
+
 # button
 def click_button_entry9():
-        entry9btn.configure(text="Ok")
-        label9.configure(foreground="green")
-        label9.configure(text="Output format:\t")
-        oformat = entry9_input.get()
-        print("Output file format:\t", oformat)
+    entry9btn.configure(text="Ok")
+    label9.configure(foreground="green")
+    label9.configure(text="Output format:\t")
+    oformat = entry9_input.get()
+    print("Output file format:\t", oformat)
+
 
 # click_button entry8
 entry9btn = ttk.Button(file_frame, text="Click", command=click_button_entry9)
@@ -466,6 +487,8 @@ entry10 = tk.StringVar()
 entry10_input = ttk.Entry(visu_frame, width=30, textvariable=entry10)
 entry10_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
 entry10_input.focus()
+
+
 # button
 def click_button_entry10():
     entry10btn.configure(text="Ok")
@@ -506,11 +529,13 @@ entry1T2 = tk.StringVar()
 entry1T2_input = ttk.Entry(file_frameT2, width=30, textvariable=entry1T2)
 entry1T2_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
 entry1T2_input.focus()
+
+
 # browse input_file
 def Browse_fileT2():
     filenameT2 = fd.askopenfilename(filetypes=[("csv files", "*.csv*"), ("All files", "*.*")] if platform.system() != 'Darwin' else (),
-    initialdir = ".",
-    title = "Select file")
+                                    initialdir = ".",
+                                    title = "Select file")
     entry1T2_input.insert(tk.END, filenameT2)
     if filenameT2 :
         Browse_btn1.configure(text="Ok")
@@ -520,11 +545,13 @@ def Browse_fileT2():
         print("Input file:\t", ifileT2)
     else:
         filenameT2 = fd.askopenfilename(filetypes=[("fasta files", "*.fa*"), ("All files", "*.*")] if platform.system() != 'Darwin' else (),
-        initialdir = ".",
-        title = "Select file")
+                                        initialdir = ".",
+                                        title = "Select file")
         entry1T2_input.insert(tk.END, filenameT2)
     if entry1T2_input.get() == "":
         msgBox()
+
+
 # click browse button for input
 Browse_btn1T2 = ttk.Button(file_frameT2, text="Browse", command=Browse_fileT2)
 Browse_btn1T2.grid(column=2, row=0, sticky=tk.W, padx = 0, pady=2)
@@ -540,13 +567,17 @@ entry2T2 = tk.StringVar()
 entry2T2_input = ttk.Entry(file_frameT2, width=30, textvariable=entry2T2)
 entry2T2_input.grid(column=1, row=2, sticky=tk.W, padx = 0, pady=2)
 entry2T2_input.focus()
+
+
 # button
 def click_button_entry2T2():
-        entry2T2btn.configure(text="Ok")
-        label2T2.configure(foreground="green")
-        label2T2.configure(text="Outplot name:\t")
-        ioutputT2 = entry2T2_input.get()
-        print("Output file:\t", ioutputT2)
+    entry2T2btn.configure(text="Ok")
+    label2T2.configure(foreground="green")
+    label2T2.configure(text="Outplot name:\t")
+    ioutputT2 = entry2T2_input.get()
+    print("Output file:\t", ioutputT2)
+
+
 # click_button entry2T2
 entry2T2btn = ttk.Button(file_frameT2, text="Click", command=click_button_entry2T2)
 entry2T2btn.grid(column=2, row=2, sticky=tk.W, padx = 0, pady=2)
@@ -560,13 +591,17 @@ entry3T2_input = ttk.Combobox(file_frameT2, width=27, textvariable=entry3T2)
 entry3T2_input["values"] = ("100", "200", "300", "400", "500", "600", "700", "800", "900", "1000")
 entry3T2_input.grid(column=1, row=3, sticky=tk.W, padx = 0, pady=2)
 entry3T2_input.current(2)
+
+
 # button
 def click_button_entry3T2():
-        entry3T2btn.configure(text="Ok")
-        label3T2.configure(foreground="green")
-        label3T2.configure(text="Outplot size:\t")
-        ioutplotT2 = entry3T2_input.get()
-        print("Outplot size:\t", ioutplotT2)
+    entry3T2btn.configure(text="Ok")
+    label3T2.configure(foreground="green")
+    label3T2.configure(text="Outplot size:\t")
+    ioutplotT2 = entry3T2_input.get()
+    print("Outplot size:\t", ioutplotT2)
+
+
 # click_button entry2T2
 entry3T2btn = ttk.Button(file_frameT2, text="Click", command=click_button_entry3T2)
 entry3T2btn.grid(column=2, row=3, sticky=tk.W, padx = 0, pady=2)
@@ -586,13 +621,17 @@ entry8T2_input = ttk.Combobox(file_frameT2, width=27, textvariable=entry8T2)
 entry8T2_input["values"] = ("eps", "jpg", "pdf", "pgf", "png", "ps", "raw", "svg", "tif")
 entry8T2_input.grid(column=1, row=4, sticky=tk.W, padx = 0, pady=2)
 entry8T2_input.current(4)
+
+
 # button
 def click_button_entry8T2():
-        entry8T2btn.configure(text="Ok")
-        label8T2.configure(foreground="green")
-        label8T2.configure(text="Outplot format:\t")
-        ioutfmtT2 = entry8T2_input.get()
-        print("Outplot format:\t", ioutfmtT2)
+    entry8T2btn.configure(text="Ok")
+    label8T2.configure(foreground="green")
+    label8T2.configure(text="Outplot format:\t")
+    ioutfmtT2 = entry8T2_input.get()
+    print("Outplot format:\t", ioutfmtT2)
+
+
 # click_button entry8T2
 entry8T2btn = ttk.Button(file_frameT2, text="Click", command=click_button_entry8T2)
 entry8T2btn.grid(column=2, row=4, sticky=tk.W, padx = 0, pady=2)
@@ -614,13 +653,17 @@ entry4T2F2 = tk.StringVar()
 entry4T2F2_input = ttk.Entry(plot_frameT2, width=30, textvariable=entry4T2F2)
 entry4T2F2_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
 entry4T2F2_input.focus()
+
+
 # button
 def click_button_entry4T2F2():
-        entry4T2F2btn.configure(text="Ok")
-        label4T2F2.configure(foreground="green")
-        label4T2F2.configure(text="Output plot title:\t")
-        ioutplottitleT2 = entry4T2F2_input.get()
-        print("Out plot title:\t", ioutplottitleT2)
+    entry4T2F2btn.configure(text="Ok")
+    label4T2F2.configure(foreground="green")
+    label4T2F2.configure(text="Output plot title:\t")
+    ioutplottitleT2 = entry4T2F2_input.get()
+    print("Out plot title:\t", ioutplottitleT2)
+
+
 # click_button entry2T2
 entry4T2F2btn = ttk.Button(plot_frameT2, text="Click", command=click_button_entry4T2F2)
 entry4T2F2btn.grid(column=2, row=0, sticky=tk.W, padx = 0, pady=2)
@@ -634,13 +677,17 @@ entry5T2F2 = tk.StringVar()
 entry5T2F2_input = ttk.Entry(plot_frameT2, width=30, textvariable=entry5T2F2)
 entry5T2F2_input.grid(column=1, row=1, sticky=tk.W, padx = 0, pady=2)
 entry5T2F2_input.focus()
+
+
 # button
 def click_button_entry5T2F2():
-        entry5T2F2btn.configure(text="Ok")
-        label5T2F2.configure(foreground="green")
-        label5T2F2.configure(text="X-axis label:\t")
-        iXlabT2 = entry5T2F2_input.get()
-        print("X-axis label:\t", iXlabT2)
+    entry5T2F2btn.configure(text="Ok")
+    label5T2F2.configure(foreground="green")
+    label5T2F2.configure(text="X-axis label:\t")
+    iXlabT2 = entry5T2F2_input.get()
+    print("X-axis label:\t", iXlabT2)
+
+
 # click_button entry5T2F2
 entry5T2F2btn = ttk.Button(plot_frameT2, text="Click", command=click_button_entry5T2F2)
 entry5T2F2btn.grid(column=2, row=1, sticky=tk.W, padx = 0, pady=2)
@@ -654,13 +701,17 @@ entry6T2F2 = tk.StringVar()
 entry6T2F2_input = ttk.Entry(plot_frameT2, width=30, textvariable=entry6T2F2)
 entry6T2F2_input.grid(column=1, row=2, sticky=tk.W, padx = 0, pady=2)
 entry6T2F2_input.focus()
+
+
 # button
 def click_button_entry6T2F2():
-        entry6T2F2btn.configure(text="Ok")
-        label6T2F2.configure(foreground="green")
-        label6T2F2.configure(text="Y-axis label:\t")
-        iYlabT2 = entry6T2F2_input.get()
-        print("Y-axis label:\t", iYlabT2)
+    entry6T2F2btn.configure(text="Ok")
+    label6T2F2.configure(foreground="green")
+    label6T2F2.configure(text="Y-axis label:\t")
+    iYlabT2 = entry6T2F2_input.get()
+    print("Y-axis label:\t", iYlabT2)
+
+
 # click_button entry6T2F2
 entry6T2F2btn = ttk.Button(plot_frameT2, text="Click", command=click_button_entry6T2F2)
 entry6T2F2btn.grid(column=2, row=2, sticky=tk.W, padx = 0, pady=2)
@@ -684,13 +735,17 @@ entry7T2F2_input['values'] = pyplot.colormaps()
 entry7T2F2_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
 entry7T2F2_input.current(57)
 entry7T2F2_input.focus()
+
+
 # button
 def click_button_entry7T2F2():
-        entry7T2F2btn.configure(text="Ok")
-        label7T2F2.configure(foreground="green")
-        label7T2F2.configure(text="Outplot colour:\t")
-        icolrplotT2 = entry7T2F2_input.get()
-        print("Outplot colour:\t", icolrplotT2)
+    entry7T2F2btn.configure(text="Ok")
+    label7T2F2.configure(foreground="green")
+    label7T2F2.configure(text="Outplot colour:\t")
+    icolrplotT2 = entry7T2F2_input.get()
+    print("Outplot colour:\t", icolrplotT2)
+
+
 # click_button entry2T2
 entry7T2F2btn = ttk.Button(colr_frameT2, text="Click", command=click_button_entry7T2F2)
 entry7T2F2btn.grid(column=2, row=0, sticky=tk.W, padx = 0, pady=2)
@@ -704,6 +759,8 @@ date = datetime.datetime.now()
 FULL_DATE = date.strftime("%Y-%m-%d %H:%M:%S")
 TIME = date.strftime("%y%m%d%H%M%S")
 #
+
+
 def argscheck():
     if entry1_input.get() == "":
         msgBox()
@@ -762,6 +819,8 @@ def argscheck():
 #         genomeSeq = "Y"
 #     print("Is genome?\t", genomeSeq)
 ########################################################## ResDig
+
+
 def redigest_code():
     argscheck()
     ### making outfile
@@ -998,7 +1057,7 @@ def redigest_code():
                 GenFastaSeq=Gen_array[:GenomeFragment]
                 ### seq object
                 GenFastaSequence = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader,
-    description=desc)
+                                             description=desc)
                 ### terminal-screen output, info about sequence header and all the fragments
                 ### based of verbosity
                 if verbosity == 'Y':
@@ -1011,6 +1070,8 @@ def redigest_code():
     # final close
     out_file.close()
     infile.close()
+
+
 ########################################################## Visu
 def run_visuCode():
     #
@@ -1174,9 +1235,13 @@ defaultT1text.configure(foreground="red")
 # run button tab 1
 runT1label = ttk.Label(tab1, text="Execute!")
 runT1label.grid(column=0, row=14, sticky=tk.W, padx = 4, pady=0)
+
+
 # info popup
 def doneBox():
     msg.showinfo("REDigest Message!","Processing Complete!")
+
+
 # code
 def run_redigest_code():
         redigest_code()
@@ -1186,13 +1251,14 @@ def run_redigest_code():
         runT1label.configure(text="Complete!")
         runT1label.configure(foreground="green")
         doneBox()
+
+
 #
 runT1btn = ttk.Button(tab1, text="Run", command=run_redigest_code)
 runT1btn.grid(column=0, row=13, sticky=tk.W, padx = 4, pady=0)
 
 # ttk.Button(win, text="Run", command=argscheck).grid(column=0, row=13, sticky=tk.W)
 ##########################################################
-
 
 ########################################################### Run code tab2
 #quit buttom
@@ -1206,6 +1272,7 @@ defaultT2text.configure(foreground="red")
 runT2label = ttk.Label(tab2, text="Execute!")
 runT2label.grid(column=0, row=14, sticky=tk.W, padx = 4, pady=0)
 
+
 # code
 def run_visu_codeT2():
         visu_codeT2()
@@ -1214,10 +1281,11 @@ def run_visu_codeT2():
         runT2label.configure(text="Complete!")
         runT2label.configure(foreground="green")
         doneBox()
+
+
 #
 runT2btn = ttk.Button(tab2, text="Run", command=run_visu_codeT2)
 runT2btn.grid(column=0, row=13, sticky=tk.W, padx = 4, pady=0)
-
 
 ############################################################
 # run the GUI
