@@ -13,7 +13,7 @@ To use REDigest, following dependencies must be installed, (for python3, version
 
 ## Running REDigest
 
-### From source
+### With virtualenv (recommended)
 
 In order to keep the REDigest requirements from clogging up the system dirs, it is recommended to install these in a virtual environment. This is also recommended in order to keep required packages at their proper versions.
 
@@ -36,6 +36,19 @@ After setting up the virtual environment, it simply needs to be activated before
 python REDigestGUI.py
 ```
 
-### Using binary releases
+### Without virtualenv
 
-Binary releases will be provided under the [Releases](releases) tab.
+#### On windows
+* Add execution permission if necessary to script `REDigestGUI.py`
+
+    *In the order of priority*
+1. Double click to open the REDigest GUI
+2. In command prompt type and execute `python3 REDigestGUI.py`
+
+#### On Linux/MacOS
+* In terminal, add execution permission if necessary with `sudo chmod +x REDigestGUI.py`
+
+    *In the order of priority*
+1. In terminal type and execute `python3 REDigestGUI.py`
+2. In file explorer, right click on file and execute **Run in terminal**
+3. Double click to run REDigest GUI **NOTE:** *this option might not work on some linux distro, depending on the system permissions*
