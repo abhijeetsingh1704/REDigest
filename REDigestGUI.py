@@ -2,7 +2,7 @@
 
 # Name:     REDigestGUI.py
 # Sign:     Abhi
-# Modified: Thu Aug 27 19:53:01 CEST 2020
+# Modified: Thu Mar 25 15:06:57 CET 2021
 
 ##########
 
@@ -39,7 +39,7 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.Restriction import RestrictionBatch
 from Bio.SeqRecord import SeqRecord
-from Bio.Alphabet import IUPAC
+#from Bio.Alphabet import IUPAC
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 
 ################################################## main window
@@ -932,7 +932,8 @@ def redigest_code():
             ### counter for the locus name
             count +=1
             ### seq object
-            FastaSequence = SeqRecord(Seq(FastaSeq, IUPAC.IUPACAmbiguousDNA()), FastaHeader, description=desc, name=NAME)
+            # FastaSequence = SeqRecord(Seq(FastaSeq, IUPAC.IUPACAmbiguousDNA()), FastaHeader, description=desc, name=NAME)
+            FastaSequence = SeqRecord(Seq(FastaSeq), FastaHeader, description=desc, name=NAME)
             ### append features to seqobject
             FastaSequence.features.append(Feat)
             ### seq object
@@ -1001,7 +1002,8 @@ def redigest_code():
             if verbosity == 'Y':
                 print(" ", GenFastaHeader)
             # seq object
-            GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
+            # GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
+            GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc)
             ### seq object to file
             if outformat == 'genbank':
                 SeqIO.write(GenSeqRec, out_file, outformat)
@@ -1022,7 +1024,8 @@ def redigest_code():
                     ID1 += 1
                     ID2 += 1
                     # seq object
-                    GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
+                    # GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
+                    GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc)
                     ### seq object to file
                     if outformat == 'genbank':
                         SeqIO.write(GenSeqRec, out_file, outformat)
@@ -1038,7 +1041,8 @@ def redigest_code():
             if verbosity == 'Y':
                 print(" ", GenFastaHeader)
             # seq object
-            GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
+            # GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
+            GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc)
             ### seq object to file
             if outformat == 'genbank':
                 SeqIO.write(GenSeqRec, out_file, outformat)
@@ -1056,8 +1060,8 @@ def redigest_code():
                 GenFastaHeader=Gen_header + "|" + str(GenomeFragment) + "_bp|" + Gen_header
                 GenFastaSeq=Gen_array[:GenomeFragment]
                 ### seq object
-                GenFastaSequence = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader,
-                                             description=desc)
+                # GenFastaSequence = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
+                GenFastaSequence = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc)
                 ### terminal-screen output, info about sequence header and all the fragments
                 ### based of verbosity
                 if verbosity == 'Y':
@@ -1290,3 +1294,4 @@ runT2btn.grid(column=0, row=13, sticky=tk.W, padx = 4, pady=0)
 ############################################################
 # run the GUI
 win.mainloop()
+# End of script
