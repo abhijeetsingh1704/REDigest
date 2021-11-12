@@ -2,13 +2,13 @@
 
 # Name:     REDigestGUI.py
 # Sign:     Abhi
-# Modified: Thu Mar 25 15:06:57 CET 2021
+# Modified: fre 12 nov 2021 11:33:51 CET
 
 ##########
 
-__author__		= "Abhijeet Singh"
+__author__	= "Abhijeet Singh"
 __copyright__	= "MIT License*"
-__email__		= "abhijeet.singh@slu.se, abhijeetsingh.aau@gmail.com"
+__email__	= "abhijeet.singh@slu.se, abhijeetsingh.aau@gmail.com"
 
 ########### libraries
 # import
