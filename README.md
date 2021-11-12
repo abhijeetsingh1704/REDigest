@@ -74,3 +74,8 @@ python REDigestGUI.py
 1. In terminal type and execute `python3 REDigestGUI.py`
 2. In file explorer, right click on file and execute **Run in terminal**
 3. Double click to run REDigest GUI **NOTE:** *this option might not work on some linux distro, depending on the system permissions*
+
+# Citation
+REDigest: a Python GUI for In-Silico Restriction Digestion Analysis of Genes or Complete Genome Sequences.
+Abhijeet Singh
+bioRxiv 2021.11.09.467873; doi: https://doi.org/10.1101/2021.11.09.467873
