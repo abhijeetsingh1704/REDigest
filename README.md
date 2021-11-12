@@ -28,6 +28,17 @@ source venv/bin/activate
 venv\bin\activate.bat
 
 # install required packages
+
+## update the environment
+pip install -U pip
+pip install -U setuptools wheel
+
+
+# download the repository
+git clone https://github.com/abhijeetsingh1704/REDigest
+cd REDigest
+
+## install dependencies
 pip install -r requirements.txt
 ```
 
