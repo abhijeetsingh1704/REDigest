@@ -115,7 +115,7 @@ def _aboutBox():
 
 def _cite():
     msg.showinfo("REDigest Citation!", dedent("""SINGH, Abhijeet. REDigest: a Python GUI for In-Silico restriction digestion analysis of genes or complete genome sequences.\
-        <journal> <metadata> <website_address Available at: https://> <Date accessed: > <DOI: doi:https://doi.org/10.>"""))
+        bioRxiv 2021.11.09.467873; doi: https://doi.org/10.1101/2021.11.09.467873"""))
 
 
 # quit
