@@ -29,6 +29,20 @@ venv\bin\activate.bat
 
 # install required packages
 
+## Linux
+test if you have tkinter in your system
+
+```bash
+$ python -m tkinter
+```
+
+If you don't see a new window, you need to install tkinter
+(Ubuntu example)
+```bash
+$ sudo apt-get update && sudo apt-get install python3-tk
+```
+
+
 ## update the environment
 pip install -U pip
 pip install -U setuptools wheel
