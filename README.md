@@ -11,40 +11,54 @@ To use REDigest, following dependencies must be installed, (for python3, version
 3. Pandas (1.1.1)
 4. Matplotlib (3.3.1)
 
+### NOTE: 
+- The GUI interface app tkinter is available by default in Python3 and do not require to be installed separately. 
+- In case you get tkinter error, update or reinsall tkinter.
+- Instructions regarding tkinter installation can be found at https://tkdocs.com/tutorial/install.html
+
 ## Running REDigest
 
 ### With virtualenv (recommended)
 
 In order to keep the REDigest requirements from clogging up the system dirs, it is recommended to install these in a virtual environment. This is also recommended in order to keep required packages at their proper versions.
 
+
+### make the virtual environment
 ```
-# make the virtual environment
 python3 -m venv venv
-
-# activate it (Linux/Mac)
+```
+### activate it (Linux/Mac)
+```
 source venv/bin/activate
+```
 
-# (or) activate it (Windows)
+### (or) activate it (Windows)
+```
 venv\bin\activate.bat
+```
 
-# install required packages
+## install required packages
 
-## update the environment
-pip install -U pip
-pip install -U setuptools wheel
+### update the environment
+```
+(venv)$ pip install -U setuptools wheel
+(venv)$ pip install -U pip
+```
 
+### download the repository
+```
+(venv)$ git clone https://github.com/abhijeetsingh1704/REDigest
+(venv)$ cd REDigest
+```
 
-# download the repository
-git clone https://github.com/abhijeetsingh1704/REDigest
-cd REDigest
-
-## install dependencies
-pip install -r requirements.txt
+### install dependencies
+```
+(venv)$ pip install -r requirements.txt
 ```
 
 After setting up the virtual environment, it simply needs to be activated before running the software. After activating, the software is executed by running
 ```
-python REDigestGUI.py
+(venv)$ python REDigestGUI.py
 ```
 
 
