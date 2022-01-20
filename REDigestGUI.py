@@ -2,7 +2,7 @@
 
 # Name:     REDigestGUI.py
 # Sign:     Abhi
-# Modified: fre 12 nov 2021 11:33:51 CET
+# Modified: tor 20 jan 2022 04:21:09 CET
 
 ##########
 
@@ -185,7 +185,7 @@ entry1_input.focus()
 
 # browse input_file
 def Browse_file():
-    filename = fd.askopenfilename(filetypes=[("fasta files","*.fa*"),("All files","*.*")] if platform.system() != 'Darwin' else (),
+    filename = fd.askopenfilename(filetypes=[("fasta files","*.f*a*"),("text files","*.txt"),("All files","*.*")] if platform.system() != 'Darwin' else (),
                                   initialdir = ".",
                                   title = "Select file")
     entry1_input.insert(tk.END, filename)
@@ -196,7 +196,7 @@ def Browse_file():
         ifile=entry1_input.get()
         print("Input file:\t", ifile)
     else:
-        filename = fd.askopenfilename(filetypes=[("fasta files","*.fa*"),("All files","*.*")] if platform.system() != 'Darwin' else (),
+        filename = fd.askopenfilename(filetypes=[("All files","*.*")] if platform.system() != 'Darwin' else (),
                                       initialdir = ".",
                                       title = "Select file")
         entry1_input.insert(tk.END, filename)
@@ -533,7 +533,7 @@ entry1T2_input.focus()
 
 # browse input_file
 def Browse_fileT2():
-    filenameT2 = fd.askopenfilename(filetypes=[("csv files", "*.csv*"), ("All files", "*.*")] if platform.system() != 'Darwin' else (),
+    filenameT2 = fd.askopenfilename(filetypes=[("csv files", "*.csv"), ("All files", "*.*")] if platform.system() != 'Darwin' else (),
                                     initialdir = ".",
                                     title = "Select file")
     entry1T2_input.insert(tk.END, filenameT2)
@@ -544,7 +544,7 @@ def Browse_fileT2():
         ifileT2=entry1T2_input.get()
         print("Input file:\t", ifileT2)
     else:
-        filenameT2 = fd.askopenfilename(filetypes=[("fasta files", "*.fa*"), ("All files", "*.*")] if platform.system() != 'Darwin' else (),
+        filenameT2 = fd.askopenfilename(filetypes=[("All files", "*.*")] if platform.system() != 'Darwin' else (),
                                         initialdir = ".",
                                         title = "Select file")
         entry1T2_input.insert(tk.END, filenameT2)
@@ -758,6 +758,7 @@ entry7T2F2btn.grid(column=2, row=0, sticky=tk.W, padx = 0, pady=2)
 date = datetime.datetime.now()
 FULL_DATE = date.strftime("%Y-%m-%d %H:%M:%S")
 TIME = date.strftime("%y%m%d%H%M%S")
+BAD_chr = "|'!\"#$%&\'()*+,-./:;<=?@[\\]^_`}{~'"
 #
 
 
@@ -860,7 +861,11 @@ def redigest_code():
         elif entry8_input.get() == "Genbank":
             informat = "genbank"
         for record in SeqIO.parse(infile, informat):
-            header=record.id
+            header=record.description.replace(" ", "_")
+            #
+            for characters in BAD_chr:
+                header=header.replace(characters, "_")
+            #
             array=str(record.seq)
             NAME=str('RED' + TIME + str(count))
             #
@@ -933,7 +938,7 @@ def redigest_code():
             count +=1
             ### seq object
             # FastaSequence = SeqRecord(Seq(FastaSeq, IUPAC.IUPACAmbiguousDNA()), FastaHeader, description=desc, name=NAME)
-            FastaSequence = SeqRecord(Seq(FastaSeq), FastaHeader, description=desc, name=NAME)
+            FastaSequence = SeqRecord(Seq(FastaSeq), FastaHeader, description=desc, name=NAME, annotations={"molecule_type": "DNA"})
             ### append features to seqobject
             FastaSequence.features.append(Feat)
             ### seq object
@@ -974,7 +979,10 @@ def redigest_code():
         elif entry8_input.get() == "Genbank":
             informat = "genbank"
         for record in SeqIO.parse(infile, informat):
-            Gen_header=record.id
+            Gen_header=record.description.replace(" ", "_")
+            for characters in BAD_chr:
+                Gen_header = Gen_header.replace(characters, "_")
+            
             Gen_array=str(record.seq)
             #
             if informat == 'genbank':
@@ -997,13 +1005,14 @@ def redigest_code():
             GenFastaSeq=Gen_array[0:ID_min]
             GenFastaSeqLen = len(GenFastaSeq)
             GenFastaHeader=Gen_header + "|" + str(GenFastaSeqLen) + "_bp|" + Gen_header
+            GenFastaHeader=GenFastaHeader.replace(" ","_")
             # verbosity
             verbosity = "Y"
             if verbosity == 'Y':
                 print(" ", GenFastaHeader)
             # seq object
             # GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
-            GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc)
+            GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc, annotations={"molecule_type": "DNA"})
             ### seq object to file
             if outformat == 'genbank':
                 SeqIO.write(GenSeqRec, out_file, outformat)
@@ -1017,6 +1026,7 @@ def redigest_code():
                     GenFastaSeq=Gen_array[Gen_array_RE_V[ID1]:Gen_array_RE_V[ID2]]
                     GenFastaSeqLen = len(GenFastaSeq)
                     GenFastaHeader=Gen_header + "|" + str(GenFastaSeqLen) + "_bp|" + Gen_header
+                    GenFastaHeader=GenFastaHeader.replace(" ","_")
                     # verbosity
                     if verbosity == 'Y':
                         print(" ", GenFastaHeader)
@@ -1025,7 +1035,7 @@ def redigest_code():
                     ID2 += 1
                     # seq object
                     # GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
-                    GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc)
+                    GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc, annotations={"molecule_type": "DNA"})
                     ### seq object to file
                     if outformat == 'genbank':
                         SeqIO.write(GenSeqRec, out_file, outformat)
@@ -1037,12 +1047,14 @@ def redigest_code():
             GenFastaSeq=Gen_array[ID_max:]
             GenFastaSeqLen = len(GenFastaSeq)
             GenFastaHeader=Gen_header + "|" + str(GenFastaSeqLen) + "_bp|" + Gen_header
+            GenFastaHeader=GenFastaHeader.replace(" ","_")
             # verbosity
             if verbosity == 'Y':
                 print(" ", GenFastaHeader)
             # seq object
             # GenSeqRec = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
-            GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc)
+            GenSeqRec = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc, annotations={"molecule_type": "DNA"})
+            
             ### seq object to file
             if outformat == 'genbank':
                 SeqIO.write(GenSeqRec, out_file, outformat)
@@ -1058,10 +1070,11 @@ def redigest_code():
             print("[WRITING:] Terminal restriction fragments, from nucleotide 1 to respective cuts to file:", report_file2)
             for GenomeFragment in Gen_array_RE_V:
                 GenFastaHeader=Gen_header + "|" + str(GenomeFragment) + "_bp|" + Gen_header
+                GenFastaHeader=GenFastaHeader.replace(" ","_")
                 GenFastaSeq=Gen_array[:GenomeFragment]
                 ### seq object
                 # GenFastaSequence = SeqRecord(Seq(GenFastaSeq, IUPAC.IUPACAmbiguousDNA()), GenFastaHeader, description=desc)
-                GenFastaSequence = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc)
+                GenFastaSequence = SeqRecord(Seq(GenFastaSeq), GenFastaHeader, description=desc, annotations={"molecule_type": "DNA"})
                 ### terminal-screen output, info about sequence header and all the fragments
                 ### based of verbosity
                 if verbosity == 'Y':
@@ -1098,12 +1111,13 @@ def run_visuCode():
     else:
         plotTitle = entry10_input.get()
     #
-    data = pd.read_csv(report_file, sep="|", delimiter='\t', names=['ID', 'Fragment'])
+    data = pd.read_csv(report_file, delimiter='\t', names=['ID', 'Fragment'])
     # delete fragment column
-    data.drop('Fragment', 1)
+    # data.drop('Fragment', 1)d
+    data = data.drop(columns="Fragment")
     # split first column
-    #data[['ID' , "RF", 'OACC']] = data["ID"].str.split('|')
-    data[['ID' , "RF", 'OACC']] = data.ID.apply(lambda x: pd.Series(str(x).split("|")))
+    data = data[['ID' , "RF", 'OACC']] = data["ID"].str.split('|', expand=True)
+    # data[['ID' , "RF", 'OACC']] = data.ID.apply(lambda x: pd.Series(str(x).split("|")))
     # remove the _bp text from fragment number
     df = data.replace(to_replace='_bp', value='', regex=True)[['ID', 'RF']]
 
@@ -1181,12 +1195,13 @@ def visu_codeT2():
     if entry6T2F2_input.get() == "":
         iYlabT2 = "Fragment size (bp)"
     ###################################
-    data = pd.read_csv(ifileT2, sep="|", delimiter='\t', names=['ID', 'Fragment'])
+    data = pd.read_csv(ifileT2, delimiter='\t', names=['ID', 'Fragment'])
     # delete fragment column
-    data.drop('Fragment', 1)
+    # data.drop('Fragment', 1)
+    data = data.drop(columns="Fragment")
     # split first column
-    #data[['ID' , "RF", 'OACC']] = data["ID"].str.split('|')
-    data[['ID' , "RF", 'OACC']] = data.ID.apply(lambda x: pd.Series(str(x).split("|")))
+    data = data[['ID' , "RF", 'OACC']] = data["ID"].str.split('|')
+    # data = data[['ID' , "RF", 'OACC']] = data.ID.apply(lambda x: pd.Series(str(x).split("|")))
     # remove the _bp text from fragment number
     df = data.replace(to_replace='_bp', value='', regex=True)[['ID', 'RF']]
 
