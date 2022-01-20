@@ -8,8 +8,8 @@ To use REDigest, following dependencies must be installed, (for python3, version
 
 1. tkinter (8.6)
 2. Biopython (>=1.78)
-3. Pandas (1.1.1)
-4. Matplotlib (3.3.1)
+3. Pandas (>=1.1.1)
+4. Matplotlib (>=3.3.1)
 
 ### NOTE: 
 - The GUI interface app tkinter is available by default in Python3 and do not require to be installed separately. 
