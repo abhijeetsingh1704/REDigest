@@ -13,7 +13,7 @@ To use REDigest, following dependencies must be installed, (for python3, version
 
 ### NOTE: 
 - The GUI interface app tkinter is available by default in Python3 and do not require to be installed separately. 
-- In case you get tkinter error, update or reinsall tkinter.
+- **In case you get tkinter error, update or reinstall tkinter.**
 - Instructions regarding tkinter installation can be found at https://tkdocs.com/tutorial/install.html
 
 ## Running REDigest
