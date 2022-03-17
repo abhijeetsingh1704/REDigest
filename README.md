@@ -39,7 +39,10 @@ venv\bin\activate.bat
 
 ## install required packages
 
-### update the environment
+### update the environment 
+
+# ---------- ----------  **DO NOT COPY/PASTE (venv)$**  ---------- ----------
+
 ```
 (venv)$ pip install -U setuptools wheel
 (venv)$ pip install -U pip
