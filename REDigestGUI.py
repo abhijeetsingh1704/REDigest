@@ -1200,7 +1200,8 @@ def visu_codeT2():
     # data.drop('Fragment', 1)
     data = data.drop(columns="Fragment")
     # split first column
-    data = data[['ID' , "RF", 'OACC']] = data["ID"].str.split('|')
+    data = data[['ID' , "RF", 'OACC']] = data["ID"].str.split('|', expand=True)
+    # data = data[['ID' , "RF", 'OACC']] = data["ID"].str.split('|')
     # data = data[['ID' , "RF", 'OACC']] = data.ID.apply(lambda x: pd.Series(str(x).split("|")))
     # remove the _bp text from fragment number
     df = data.replace(to_replace='_bp', value='', regex=True)[['ID', 'RF']]
