@@ -1,4 +1,4 @@
-# REDigest
+# REDigest (version 2.0)
 REDigest: a Python GUI for *In-Silico* Restriction Digestion Analysis for Gene or Complete Genome Sequences
 
 ## Dependencies
@@ -41,27 +41,25 @@ venv\bin\activate.bat
 
 ### update the environment 
 
-# ---------- ----------  **DO NOT COPY/PASTE (venv)$**  ---------- ----------
-
 ```
-(venv)$ pip install -U setuptools wheel
-(venv)$ pip install -U pip
+pip install -U setuptools wheel
+pip install -U pip
 ```
 
 ### download the repository
 ```
-(venv)$ git clone https://github.com/abhijeetsingh1704/REDigest
-(venv)$ cd REDigest
+git clone https://github.com/abhijeetsingh1704/REDigest
+cd REDigest
 ```
 
 ### install dependencies
 ```
-(venv)$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 After setting up the virtual environment, it simply needs to be activated before running the software. After activating, the software is executed by running
 ```
-(venv)$ python REDigestGUI.py
+python REDigestGUI.py
 ```
 
 
@@ -102,6 +100,12 @@ After setting up the virtual environment, it simply needs to be activated before
 1. In terminal type and execute `python3 REDigestGUI.py`
 2. In file explorer, right click on file and execute **Run in terminal**
 3. Double click to run REDigest GUI **NOTE:** *this option might not work on some linux distro, depending on the system permissions*
+
+# Update (version 2.0)
+1. Improved cluster plot
+2. New Histogram plot
+3. Ten cluster plots for 10 parts of input data 
+3. Ten histogram plots for 10 parts of input data
 
 # Citation
 REDigest: a Python GUI for In-Silico Restriction Digestion Analysis of Genes or Complete Genome Sequences.
