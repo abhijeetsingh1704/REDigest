@@ -959,8 +959,6 @@ def redigest_code():
             Gen_array_RE=enzyme_RE.search(Seq(Gen_array))
             Gen_array_RE_V = list(Gen_array_RE.values())[0]
 
-            print(Gen_array_RE)
-
             #
             ID0 = 0
             #
