@@ -2,7 +2,7 @@
 
 # Name:     REDigestGUI.py
 # Sign:     Abhi
-# Modified: mon 11 jul 2022 10:54:59 CEST
+# Modified: mon 18 jul 2022 16:54:59 CEST
 
 ##########
 
@@ -958,10 +958,22 @@ def redigest_code():
             ### search the restriction sites position in sequence
             Gen_array_RE=enzyme_RE.search(Seq(Gen_array))
             Gen_array_RE_V = list(Gen_array_RE.values())[0]
+
+            print(Gen_array_RE)
+
             #
             ID0 = 0
-            ID_min = min(Gen_array_RE_V)
-            ID_max = max(Gen_array_RE_V)
+            #
+            if len(Gen_array_RE_V)==0:
+                ID_min=0
+            else:
+                ID_min = min(Gen_array_RE_V)
+            #
+            if len(Gen_array_RE_V)==0:
+                ID_max=0
+            else:
+                ID_max = max(Gen_array_RE_V)
+            #
             ID1 = 0
             ID2 = 1
             # first fragment from first nt to first cut
@@ -1229,7 +1241,7 @@ def visu_codeT2():
         msgBox()
     # ########### output file
     if entry2T2_input.get() == "":
-        ioutputT2 = "RedigestPlot" + TIME + "." + entry8T2_input.get()
+        ioutputT2 = "RedigestPlot" + TIME + "_CLUSTERPLOT." + entry8T2_input.get()
     else:
         ioutputT2 = entry2T2_input.get() + "." + entry8T2_input.get()
     # default plot Title
@@ -1309,7 +1321,7 @@ def visu_codeT2():
     color_bar.draw_all()
     
     # save plot
-    outplot = ioutputT2 + "_CLUSTERPLOT" + ioutfmtT2
+    outplot = ioutputT2
     plt.savefig(outplot, bbox_inches='tight', dpi=300, format=ioutfmtT2)
     plt.close()
     ############################################################
@@ -1325,7 +1337,7 @@ def visu_codeT2():
     # histogram
     plt.hist(x=df.RF, rwidth=0.5)
     plt.draw()
-    outplot = ioutputT2 + "_HISTOGRAM" + ioutfmtT2
+    outplot = ioutputT2.replace("_CLUSTERPLOT." ,"_HISTOGRAM.")
     plt.savefig(outplot, bbox_inches='tight', dpi=300, format=ioutfmtT2)
     plt.close()
     ############################################################
@@ -1360,7 +1372,7 @@ def visu_codeT2():
         #
         plt.draw()        
         # save plot
-        ioutputT3 = ioutputT2 + "." + str(i) + "_clstr" + ioutfmtT2
+        ioutputT3 = ioutputT2.replace("_CLUSTERPLOT.png","") + "_" + str(i) + "_clstr." + ioutfmtT2
         plt.savefig(ioutputT3, bbox_inches='tight', dpi=ioutsizeT2, format=ioutfmtT2)
         plt.close()
     #
@@ -1382,7 +1394,7 @@ def visu_codeT2():
         plt.hist(x=df_part[i].RF, rwidth=0.5)
         #
         plt.draw()
-        ioutputT3 = ioutputT2 + "." + str(i) + "_hist" + ioutfmtT2
+        ioutputT3 = ioutputT2.replace("_CLUSTERPLOT.png","") + "_" + str(i) + "_hist." + ioutfmtT2
         plt.savefig(ioutputT3, bbox_inches='tight', dpi=ioutsizeT2, format=ioutfmtT2)
         plt.close()
 
