@@ -2,7 +2,7 @@
 
 # Name:     REDigestGUI.py
 # Sign:     Abhi
-# Modified: mon 18 jul 2022 16:54:59 CEST
+# Modified: Tue Jul 19 10:20:33 CEST 2022
 
 ##########
 
@@ -959,6 +959,8 @@ def redigest_code():
             Gen_array_RE=enzyme_RE.search(Seq(Gen_array))
             Gen_array_RE_V = list(Gen_array_RE.values())[0]
 
+            print(Gen_array_RE)
+
             #
             ID0 = 0
             #
@@ -977,7 +979,7 @@ def redigest_code():
             # first fragment from first nt to first cut
             GenFastaSeq=Gen_array[0:ID_min]
             GenFastaSeqLen = len(GenFastaSeq)
-            GenFastaHeader=Gen_header + "|" + str(GenFastaSeqLen) + "_bp|" #+ Gen_header
+            GenFastaHeader=Gen_header + "|" + str(GenFastaSeqLen) + "_bp|" + Gen_header
             GenFastaHeader=GenFastaHeader.replace(" ","_")
             # verbosity
             verbosity = "Y"
@@ -1150,8 +1152,8 @@ def run_visuCode():
     ############################################################
     #Plot figure
     plt.figure()
-    plt.ylabel('Fragment size (bp)')
-    plt.xlabel('Fragment frequency (counts)')
+    plt.xlabel('Fragment size (bp)')
+    plt.ylabel('Fragment frequency (counts)')
     plt.title(plotTitle)
     plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
