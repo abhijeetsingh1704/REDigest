@@ -2,7 +2,8 @@
 
 # Name:     REDigestGUI.py
 # Sign:     Abhi
-# Modified: Tue Jul 19 10:20:33 CEST 2022
+# Modified: Sat Jan 20 18:50:01 CET 2024
+# Version: 3.0
 
 ##########
 
@@ -39,6 +40,7 @@ from tkinter import Menu
 # import from Biopython
 from Bio import SeqIO
 from Bio.Seq import Seq
+from Bio import Restriction
 from Bio.Restriction import RestrictionBatch
 from Bio.SeqRecord import SeqRecord
 #from Bio.Alphabet import IUPAC
@@ -112,11 +114,11 @@ def _helpBox2():
 
 def _aboutBox():
     msg.showinfo("REDigest About!", dedent("""
-    REDigest version 2.0
+    REDigest version 3.0
 
     MIT License*
 
-    Copyright (c) 2020 Abhijeet Singh
+    Copyright (c) 2024 Abhijeet Singh
     Anaerobic Microbiology and Biotechnology group (AMB)
     Department of Molecular Sciences
     Swedish University of Agricultural Sciences (SLU)
@@ -261,14 +263,23 @@ frame2_label1 = ttk.Label(text="Restriction Enzyme", style="frame2.Label")
 enzyme_frame = ttk.Labelframe(tab1, labelwidget=frame2_label1)
 enzyme_frame.grid(column=0, row=1, sticky=tk.W, padx = 4, pady=0)
 
+
+
 ################################################# Label 3
+
+Restriction_enzymes_var = dir(Restriction)
+built_in=['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__']
+Restriction_enzymes = [x for x in Restriction_enzymes_var if (x not in built_in)]
+
 label3 = ttk.Label(enzyme_frame, text="Enzyme: * \t")
 label3.grid(column=0, row=0, sticky=tk.W, padx = 0, pady=2)
 label3.configure(foreground="red")
 # entry2 box
 entry3 = tk.StringVar()
-entry3_input = ttk.Entry(enzyme_frame, width=30, textvariable=entry3)
+entry3_input = ttk.Combobox(enzyme_frame, width=30, textvariable=entry3)
+entry3_input['values'] = Restriction_enzymes
 entry3_input.grid(column=1, row=0, sticky=tk.W, padx = 0, pady=2)
+entry3_input.current(0)
 entry3_input.focus()
 ienzyme = entry3_input.get()
 
@@ -292,8 +303,8 @@ entry3btn.grid(column=2, row=0, sticky=tk.W, padx = 0, pady=2)
 # mandatory label3
 # Mandatory3 = ttk.Label(enzyme_frame, text="Required\t\t", foreground="red")
 # Mandatory3.grid(column=5, row=0, sticky=tk.W, padx = 4, pady=4)
-Mandatory3info = ttk.Label(enzyme_frame, text="# case sensitive!\n# Ex: Hpy188III", foreground="red")
-Mandatory3info.grid(column=0, row=1, sticky=tk.W, padx = 4, pady=0)
+# Mandatory3info = ttk.Label(enzyme_frame, text="# case sensitive!\n# Ex: Hpy188III", foreground="red")
+# Mandatory3info.grid(column=0, row=1, sticky=tk.W, padx = 4, pady=0)
 ########################################################### Frame 3
 #frame3 element
 frame3 = ttk.Style()
@@ -885,13 +896,15 @@ def redigest_code():
                 FastaHeader=NAME + "|" + str(len(FarrayRseqFR)) + "_bp" + "|" + header
                 ### non-cut fragment sequence
                 FastaSeq=FarrayRseqFR[:len(FarrayRseqFR)]
-                Feat=SeqFeature(FeatureLocation(start=0, end=len(FarrayRseqFR)), type="REDigest", ref=SubFeat)
+                # Feat=SeqFeature(FeatureLocation(start=0, end=len(FarrayRseqFR)), type="REDigest", ref=SubFeat)
+                Feat=SeqFeature(FeatureLocation(start=0, end=len(FarrayRseqFR)), type="REDigest")
             else:
                 ### cut fragment header
                 FastaHeader=NAME + "|" + str(fragment) + "_bp" + "|" + header
                 ### cut fragment sequence and slicing to the fragment length
                 FastaSeq=FarrayRseqFR[:fragment]
-                Feat=SeqFeature(FeatureLocation(start=0, end=fragment), type="REDigest", ref=SubFeat)
+                # Feat=SeqFeature(FeatureLocation(start=0, end=fragment), type="REDigest", ref=SubFeat)
+                Feat=SeqFeature(FeatureLocation(start=0, end=fragment), type="REDigest")
             ### terminal-screen output, info about sequence header and all the fragments
                 ### based of verbosity
 
@@ -1142,6 +1155,7 @@ def run_visuCode():
     color_bar = plt.colorbar()
     color_bar.set_alpha(1)
     color_bar.draw_all()
+    
     #make grids
     plt.grid('on', which='major', axis='y', linestyle='-.', linewidth=0.25)
     plt.grid('on', which='major', axis='x', linestyle='-.', linewidth=0.25)
@@ -1166,10 +1180,10 @@ def run_visuCode():
     plt.savefig(outplot, bbox_inches='tight', dpi=300, format="png")
     plt.close()
     ############################################################
-    
+
     df_part = np.array_split(df, 10)
 
-    for i in range(0,10):
+    for i in range(0, 10):
         
         MIN=min(df_part[i].RF)
         MAX=max(df_part[i].RF)
@@ -1341,7 +1355,7 @@ def visu_codeT2():
     plt.savefig(outplot, bbox_inches='tight', dpi=300, format=ioutfmtT2)
     plt.close()
     ############################################################
-    
+
     df_part = np.array_split(df, 10)
 
     for i in range(0,10):
