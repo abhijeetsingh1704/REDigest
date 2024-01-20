@@ -7,7 +7,7 @@ REDigest is written in **Python3**, not adapted for python2 and its dependencies
 To use REDigest, following dependencies must be installed, (for python3, version ≥) 
 
 1. tkinter (8.6)
-2. Biopython (>=1.78)
+2. Biopython (==1.78)
 3. Pandas (>=1.1.1)
 4. Matplotlib (>=3.3.1)
 5. Numpy
