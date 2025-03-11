@@ -1,6 +1,6 @@
-biopython>=1.78
-pandas>=1.1.1
-matplotlib>=3.3.1
-numpy
-tk
-Pyarrow
+biopython==1.78
+pandas==2.1.1
+matplotlib==3.3.4
+numpy==1.23.2
+tk==0.1.0
+Pyarrow==19.0.1
